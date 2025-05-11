@@ -1,0 +1,36 @@
+<mat-toolbar color="primary">
+  <span style="font-size: 1.5rem; font-weight: bold;">🎵 Sistema de Recomendación Musical</span>
+</mat-toolbar>
+
+<div style="padding: 2rem; max-width: 600px; margin: auto;">
+  <mat-card>
+    <mat-card-title style="font-size: 1.25rem;">Buscar Recomendaciones</mat-card-title>
+    <mat-card-content>
+      <form (ngSubmit)="getRecommendations()" style="margin-top: 1rem;">
+        <mat-form-field appearance="outline" style="width: 100%;">
+          <mat-label>ID de Usuario</mat-label>
+          <input matInput [(ngModel)]="userId" name="userId" required>
+        </mat-form-field>
+
+        <div style="text-align: right; margin-top: 1rem;">
+          <button mat-raised-button color="accent" type="submit">
+            Obtener Recomendaciones
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+  <div *ngIf="recommendations.length > 0" style="margin-top: 2rem;">
+    <mat-card>
+      <mat-card-title>Recomendaciones para el usuario {{userId}}</mat-card-title>
+      <mat-list>
+        <mat-list-item *ngFor="let rec of recommendations">
+          <mat-icon matListIcon color="primary">music_note</mat-icon>
+          <h4 matLine>{{ rec.title }}</h4>
+          <p matLine>{{ rec.artist }} — {{ rec.genre }}</p>
+        </mat-list-item>
+      </mat-list>
+    </mat-card>
+  </div>
+</div>
