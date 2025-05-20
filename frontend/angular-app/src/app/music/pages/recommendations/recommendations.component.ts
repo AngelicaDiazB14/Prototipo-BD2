@@ -24,51 +24,40 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
   styleUrl: './recommendations.component.css'
 })
 export class RecommendationsComponent {
-  // Variable que almacena el ID del usuario ingresado
   userId = '';
-
-  // Variable que guarda el ID del artista seleccionado (si hay alguno)
   selectedArtistId: number | null = null;
-
-  // Lista de recomendaciones obtenidas desde el backend
   recommendations: {
-    artistID: number;
-    artistName: string;
-    rating: number;
-    url: string;
-    pictureURL: string;
-  }[] = [];
+  artistID: number;
+  artistName: string;
+  rating: number;
+  url: string;
+  pictureURL: string;
+}[] = [];
 
-  // Función que se ejecuta cuando se selecciona un artista desde la interfaz
-  setSelected(id: number) {
-    this.selectedArtistId = id;
-  }
+setSelected(id: number) {
+  this.selectedArtistId = id;
+}
 
-  // Indica si ya se realizó una consulta
   consulted = false;
 
-  // Inyecta el servicio de recomendaciones para consumir el backend
   constructor(private recommendationService: RecommendationService) {}
 
-  // Bandera que indica si la solicitud está en proceso de carga
-  loading = false;
+loading = false;
 
-  // Método que solicita recomendaciones para el ID de usuario proporcionado
-  getRecommendations() {
-    this.loading = true;       // Activa indicador de carga
-    this.consulted = false;    // Reinicia el estado de consulta
+getRecommendations() {
+    this.loading = true;
+    this.consulted = false;
 
-    // Llama al servicio que hace la petición al backend
     this.recommendationService.getRecommendations(this.userId).subscribe(data => {
-      // Asigna las recomendaciones recibidas al arreglo local
       this.recommendations = data.recommendations;
-      this.consulted = true;    // Marca que la consulta se realizó
-      this.loading = false;     // Desactiva la carga
+      this.consulted = true;
+      this.loading = false;
     }, () => {
-      // En caso de error, borra cualquier resultado previo
       this.recommendations = [];
       this.consulted = true;
       this.loading = false;
     });
   }
+
 }
+
