@@ -1,0 +1,73 @@
+:host {
+  background: linear-gradient(to bottom, #191414, #121212);
+  color: white;
+  min-height: 100vh;
+  display: block;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+mat-card {
+  background-color: #282828;
+  color: rgb(245, 238, 238);
+}
+
+mat-toolbar {
+  background-color: rgb(9, 173, 29);
+  color: rgb(231, 226, 226) !important;
+}
+
+mat-list-item {
+  border-bottom: 1px solid #73e391;
+}
+
+mat-list-item:hover {
+  background-color: #10d24a;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+  padding: 1rem 0;
+}
+
+.recommendation-card {
+  background-color: #1e1e1e;
+  color: white;
+  border: 1px solid #333;
+  border-radius: 12px;
+  transition: transform 0.2s ease;
+}
+
+.recommendation-card:hover {
+  transform: scale(1.03);
+  background-color: #2c2c2c;
+}
+
+.recommendation-card img {
+  height: 180px;
+  object-fit: cover;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+.recommendation-card img {
+  height: 180px;
+  object-fit: cover;
+  background-color: #f5f5f5; 
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+}
+.artist-link {
+  text-decoration: none;
+  color: #1db954;
+  transition: color 0.3s ease;
+}
+
+.artist-link:hover {
+  color: #43e91e; 
+}

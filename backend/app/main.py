@@ -1,31 +1,24 @@
+# Importa FastAPI, el framework web utilizado para construir la API
 from fastapi import FastAPI
+# Importa el router definido en el archivo de rutas
+from app.api.routes import router
+# Importa el middleware CORS para permitir comunicación entre el backend y el frontend en distintos orígenes
 from fastapi.middleware.cors import CORSMiddleware
-from app.recommender import get_recommendations, train_and_save_model
-
-app = FastAPI()
-
-# CORS para permitir Angular
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],  
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+# Crea una instancia de la aplicación FastAPI con metadatos como título, versión y descripción
+app = FastAPI(
+    title="Song Recommender API",
+    version="1.0.0",
+    description="Recomendador de canciones usando Spark ALS en memoria"
 )
 
-@app.get("/")
-def root():
-    return {"message": "API de recomendaciones de música"}
+# Agrega middleware CORS para permitir que el frontend (Angular) se comunique con el backend
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:4200"],  # Permite solicitudes desde el frontend Angular en localhost
+    allow_credentials=True,  # Permite el envío de cookies/autenticación
+    allow_methods=["*"],  # Permite todos los métodos HTTP (GET, POST, etc.)
+    allow_headers=["*"],  # Permite todos los encabezados en las solicitudes
+)
 
-@app.get("/api/recommend/{user_id}")
-def recommend(user_id: int):
-    try:
-        recs = get_recommendations(user_id)
-        return {"user_id": user_id, "recommendations": recs}
-    except Exception as e:
-        return {"error": str(e)}
-
-@app.get("/api/train")
-def train_model():
-    train_and_save_model()
-    return {"message": "✅ Modelo entrenado y guardado"}
+# Incluye las rutas definidas en el router importado desde app.api.routes
+app.include_router(router)

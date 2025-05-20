@@ -3,5 +3,9 @@
     "autoprefixer": "^10.4.21",
     "postcss": "^8.5.3",
     "tailwindcss": "^4.1.6"
+  },
+  "dependencies": {
+    "chart.js": "^4.4.9",
+    "ng2-charts": "^8.0.0"
   }
 }

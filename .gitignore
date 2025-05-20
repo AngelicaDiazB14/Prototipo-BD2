@@ -1,61 +1,25 @@
-# =====================
-# General
-# =====================
-.env
-*.log
-*.local
-*.pyc
+# Entorno virtual de Python
+venv310/
+
+# Cachés de Python
 __pycache__/
+*.py[cod]
+*.pyo
+
+# Archivos de log
+*.log
+
+# Archivos de entorno
+.env
+
+# Configuración de VSCode
+.vscode/
+
+# Node.js (Angular)
+node_modules/
+dist/
+.angular/
+
+# Archivos de sistema
 .DS_Store
 Thumbs.db
-
-# =====================
-# Node.js / Angular
-# =====================
-# Ignora node_modules en cualquier parte del proyecto
-**/node_modules/
-**/dist/
-**/build/
-**/.angular/
-**/.angular-cache/
-**/tmp/
-
-# Angular project build outputs
-frontend/angular-app/.output/
-frontend/angular-app/.server/
-frontend/angular-app/.turbo/
-
-# =====================
-# Python / Spark / Backend
-# =====================
-# Entornos virtuales
-venv/
-backend/venv/
-backend/app/__pycache__/
-
-# Checkpoints, logs y archivos temporales de Spark
-**/metastore_db/
-**/spark-warehouse/
-**/*.crc
-**/.sparkStaging/
-
-# Modelos o datos grandes
-backend/app/model/
-backend/app/parquet/
-
-# =====================
-# IDEs y editores
-# =====================
-.vscode/
-.idea/
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-
-# =====================
-# Otros
-# =====================
-*.bak
-*.swp
-

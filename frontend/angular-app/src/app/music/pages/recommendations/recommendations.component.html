@@ -1,0 +1,61 @@
+<mat-toolbar color="primary">
+  <mat-icon style="margin-right: 12px; font-size: 1.8rem;">library_music</mat-icon>
+  <span style="font-size: 1.5rem; font-weight: bold;">Sistema de Recomendación Musical</span>
+</mat-toolbar>
+
+<div style="padding: 2rem; max-width: 1000px; margin: auto;">
+  <mat-card style="margin-top: 20px;">
+    <mat-card-title style="font-size: 1.25rem; padding: 16px 16px 0 16px;">
+      <mat-icon style="vertical-align: middle; margin-right: 8px;">search</mat-icon>
+      Buscar Recomendaciones
+    </mat-card-title>
+    <mat-card-content style="padding: 16px;">
+      <form (ngSubmit)="getRecommendations()" style="margin-top: 1rem;">
+        <mat-form-field appearance="outline" style="width: 100%;">
+          <mat-label>ID de Usuario</mat-label>
+          <input matInput [(ngModel)]="userId" name="userId" required>
+        </mat-form-field>
+
+        <div style="text-align: right; margin-top: 1rem;">
+          <button mat-raised-button color="accent" type="submit">
+            Obtener Recomendaciones
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+  
+  <div *ngIf="loading" class="spinner-container">
+    <mat-spinner diameter="40" strokeWidth="4" color="accent"></mat-spinner>
+  </div>
+
+  <div *ngIf="recommendations.length > 0" style="margin-top: 2rem;">
+    <mat-card>
+      <mat-card-title style="margin: 16px 16px 24px 16px; display: flex; align-items: center;">
+        <mat-icon style="margin-right: 8px;">recommend</mat-icon>
+        Recomendaciones para el usuario {{userId}}
+      </mat-card-title>
+
+      <div class="card-grid">
+        <mat-card class="recommendation-card" *ngFor="let rec of recommendations">
+          <img mat-card-image 
+              src="assets/default-music.png" 
+              [alt]="rec.artistName" />
+          <mat-card-content>
+            <h3 style="margin: 0 0 0.5rem 0;">
+           <a [href]="rec.url"
+            target="_blank"
+            class="artist-link">
+            {{ rec.artistName }}
+          </a>
+            </h3>
+            <p style="display: flex; align-items: center; margin-top: 8px;">
+              <mat-icon style="color: #FFD700; margin-right: 6px;">star</mat-icon>
+              Puntaje estimado: {{ rec.rating | number: '1.1-2' }}
+            </p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </mat-card>
+  </div>
+</div>

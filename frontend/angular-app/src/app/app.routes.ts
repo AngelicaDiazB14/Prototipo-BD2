@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { RecommendationsComponent } from './musical/pages/recommendations/recommendations.component';
+import { RecommendationsComponent } from './music/pages/recommendations/recommendations.component';
 
 export const routes: Routes = [
 
