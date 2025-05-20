@@ -91,7 +91,7 @@ Abra una terminal en la raíz del proyecto y ejecute lo siguiente:
 ```bash
 # Crear y activar entorno virtual (si no está presente)
 python -m venv venv310
-.env310\Scriptsctivate # En Linux/Mac: source venv310/bin/activate
+.env310\Scripts\activate # En Linux/Mac: source venv310/bin/activate
 
 # Cuando active el entorno virtual ejecute:
 
